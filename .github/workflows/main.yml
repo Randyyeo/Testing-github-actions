@@ -16,6 +16,7 @@ jobs:
 
   autotag:
     name: Echo Tag
+    runs-on: ubuntu-latest
     steps:
       - name: Echo tag
         run: echo ${{ github.event.inputs.tags }}
