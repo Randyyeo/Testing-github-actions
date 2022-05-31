@@ -1,24 +1,23 @@
-# Name of the workflow
-name: Release
-
-# Run on every commit tag which begins with "v" (e.g., "v0.1.4")
+name: Bump version
 on:
   push:
     branches:
-      - 'master'
-
-# Automatically create a GitHub Release, with release details specified (the relevant commits)
+      - master
 jobs:
-  release:
-    name: "Release"
-    runs-on: "ubuntu-latest"
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-      - name: tag
-        run: |
-          echo ${{ github.event.inputs.tags }}
-          echo ${{ steps.vars.outputs.tag }}
-
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+  
+  Tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo tag
+        run: echo ${{ steps.compute_tag.outputs.next_tag }}
