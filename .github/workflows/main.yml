@@ -15,7 +15,9 @@ jobs:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
   autotag:
-    - name: Auto tag
-      run: echo ${{ github.event.inputs.tags }}
+    name: Echo Tag
+    steps:
+      - name: Echo tag
+        run: echo ${{ github.event.inputs.tags }}
 
         
