@@ -16,4 +16,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
     - name: echo tag
-      run: echo "v${{ github.event.inputs.tags }}"
+      run: echo ${{ github.event.inputs.tags }}
