@@ -15,6 +15,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
-    - name: echo tag
-      if: github.event.inputs.tags == 'v0.3.0'
-      run: echo "It works!"
+  
+  Tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo tag
+        run: echo The tags are ${{ github.event.inputs.tags }}
