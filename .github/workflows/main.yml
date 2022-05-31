@@ -19,6 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo tag
-        run: echo ${{ github.event.inputs.tags }}
+        run: echo "v${{ github.event.inputs.tags }}"
 
         
