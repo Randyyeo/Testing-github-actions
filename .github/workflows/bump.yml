@@ -16,4 +16,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
     - name: echo tag
-      run: echo ${{ github.event.inputs.tags }}
+      if: github.event.inputs.tags == 'v0.3.0'
+      run: echo "It works!"
